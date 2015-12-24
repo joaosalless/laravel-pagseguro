@@ -46,6 +46,8 @@ Edite o arquivo *config/pagseguro.php*, entrando com o ambiente, email e token d
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Repositories\UserRepository;
+use App\Repositories\OrderRepository;
 use PHPSC\PagSeguro\Items\Item;
 use PHPSC\PagSeguro\Customer\Phone;
 use PHPSC\PagSeguro\Customer\Address;
