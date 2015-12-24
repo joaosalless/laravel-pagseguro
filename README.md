@@ -38,7 +38,37 @@ Edite o arquivo *config/pagseguro.php*, entrando com o ambiente, email e token d
 
 ## Exemplos de utilização no Laravel 5.1
 
-### Controller para Checkout
+## Controller para Checkout básico
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests;
+use PHPSC\PagSeguro\Items\Item;
+use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
+
+
+class PagseguroController extends Controller
+{
+    public function index(CheckoutService $checkoutService)
+    {
+
+        $checkout = $checkoutService->createCheckoutBuilder()
+            ->addItem(new Item(1, 'Televisão LED 500', 8999.99))
+            ->addItem(new Item(2, 'Video-game mega ultra blaster', 799.99))
+            ->getCheckout();
+
+        $response = $checkoutService->checkout($checkout);
+
+        redirect($response->getRedirectionUrl());
+
+    }
+}
+````
+
+### Controller para Checkout apartir dos ítens de um pedido já criado
 
 ```php
 <?php
