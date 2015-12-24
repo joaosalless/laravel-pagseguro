@@ -7,6 +7,10 @@ use PHPSC\PagSeguro\Credentials;
 use PHPSC\PagSeguro\Environments\Production;
 use PHPSC\PagSeguro\Environments\Sandbox;
 use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
+use PHPSC\PagSeguro\Requests\PreApprovals\PreApprovalService;
+use PHPSC\PagSeguro\Purchases\Subscriptions\SubscriptionService;
+use PHPSC\PagSeguro\Purchases\Transactions\Locator as TransactionLocator;
+use PHPSC\PagSeguro\Purchases\Subscriptions\Locator as SubscriptionLocator;
 
 class LaravelPagseguroServiceProvider extends ServiceProvider
 {
@@ -29,14 +33,38 @@ class LaravelPagseguroServiceProvider extends ServiceProvider
 
         $this->app->bind('PHPSC\PagSeguro\Credentials', function () {
             return new Credentials(
-                config('pagseguro.email'),
-                config('pagseguro.token'),
+                config('pagseguro.credentials.email'),
+                config('pagseguro.credentials.token'),
                 $this->app->make('PagseguroEnv')
             );
         });
 
+        /**
+         * Pagamentos
+         */
         $this->app->bind('PHPSC\PagSeguro\Requests\Checkout\CheckoutService', function () {
             return new CheckoutService($this->app->make('PHPSC\PagSeguro\Credentials'));
+        });
+
+        /**
+         * Assinaturas
+         */
+        $this->app->bind('PHPSC\PagSeguro\Requests\PreApprovals\PreApprovalService', function () {
+            return new PreApprovalService($this->app->make('PHPSC\PagSeguro\Credentials'));
+        });
+
+        $this->app->bind('PHPSC\PagSeguro\Purchases\Subscriptions\SubscriptionService', function () {
+            return new SubscriptionService($this->app->make('PHPSC\PagSeguro\Credentials'));
+        });
+
+        /**
+         * Busca Assinatura ou Transação por Código
+         */
+        $this->app->bind('PHPSC\PagSeguro\Purchases\Subscriptions\Locator', function () {
+            return new SubscriptionLocator($this->app->make('PHPSC\PagSeguro\Credentials'));
+        });
+        $this->app->bind('PHPSC\PagSeguro\Purchases\Transactions\Locator', function () {
+            return new TransactionLocator($this->app->make('PHPSC\PagSeguro\Credentials'));
         });
     }
 }

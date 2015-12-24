@@ -1,5 +1,5 @@
 {
-    "name": "wesleywillians/laravel-pagseguro",
+    "name": "joaosalless/laravel-pagseguro",
     "description": "Laravel 5 ServiceProvider for Pagseguro Library from PHPSC",
     "require": {
         "phpsc/pagseguro": "1.0.*"
@@ -9,6 +9,10 @@
         {
             "name": "Wesley Willians",
             "email": "wesleywillians@gmail.com"
+        },
+        {
+            "name": "João Sales",
+            "email": "joaosalless@gmail.com"
         }
     ],
     "autoload": {

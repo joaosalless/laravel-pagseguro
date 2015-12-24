@@ -1,9 +1,14 @@
 <?php
 
 return [
-    'environment' => 'sandbox', // production
-    'email' => 'email@frompagseguro.com',
-    'token' => 'tokenpagseguro'
+    'environment' => 'sandbox', // environment = sandbox | production
+
+    'credentials' => [
+        'email' => 'email@frompagseguro.com.br',
+        'token' => 'tokenpagseguro',
+    ],
+
+    'reference' => [
+        'prefix' => 'ORDER_ID_',
+    ],
 ];
-
-
