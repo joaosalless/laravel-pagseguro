@@ -2,7 +2,7 @@
 
 ### Instruções
 
-Esse pacote utiliza a lib phpsc/pagseguro, gerando um ServiceProvider para aplicações Laravel 5.
+Esse pacote utiliza a lib [PHPSC/pagseguro](https://github.com/PHPSC/pagseguro), gerando um ServiceProvider para aplicações Laravel 5.
 
 ### Instalação
 
