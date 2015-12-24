@@ -78,28 +78,28 @@ class PagseguroController extends Controller
             $user  = $this->userRepository->with('client')->find(Auth::user()->id);
 
             $customer = new Customer(
-                'Nome do Cliente',
                 'emaildocliente@user.com',
+                'Nome do Cliente',
                 new Phone('11', '999998888'),
                 new Address(
-                    'SP',
-                    'São Paulo',
-                    'Bairro',
-                    '01323000',
-                    'Nome da Rua',
-                    'Número',
-                    null
+                    $state      = 'SP',
+                    $city       = 'São Paulo',
+                    $postalCode = '01323000',
+                    $district   = 'Bairro',
+                    $street     = 'Nome da Rua',
+                    $number     = '100',
+                    $complement = 'AP 101'
                 )
-                // $user->email,
-                // $user->name,
-                // new Phone($user->client->phone_area, $user->client->phone),
+                // $order->user->email,
+                // $order->user->name,
+                // new Phone($order->client->phone_area, $order->client->phone),
                 // new Address(
-                //     $user->client->state,
-                //     $user->client->city,
-                //     $user->client->district,
-                //     $user->client->zipcode,
-                //     $user->client->street,
-                //     $user->client->number,
+                //     $order->client->state,
+                //     $order->client->city,
+                //     $order->client->district,
+                //     $order->client->zipcode,
+                //     $order->client->street,
+                //     $order->client->street_number,
                 //     null
                 // )
             );
